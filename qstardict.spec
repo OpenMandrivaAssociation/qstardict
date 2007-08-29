@@ -1,21 +1,14 @@
-#
-# spec file for package QStarDict
-#
-# Copyright (c) 2007 Nikolay Derkach
-# This file and all modifications and additions to the pristine
-# package are under the same license as the package itself.
-#
-
-Name:           qstardict
-Version:        0.05
-Release:        2.1
-License:        GPL
-URL:            http://qstardict.ylsoftware.com
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  libqt4-devel >= 4.2.0 update-desktop-files glib2-devel
-Source:       %{name}-%{version}.tar.bz2
-Group:        Productivity/Office/Dictionary
-Summary:      StarDict clone written in Qt4.
+Name:		qstardict
+Version:	0.05
+Release:	%mkrel 1
+License:	GPL
+URL:		http://qstardict.ylsoftware.com
+BuildRoot:	%{_tmppath}/%{name}-%{version}-build
+BuildRequires:	qt4-devel glib2-devel desktop-file-utils ImageMagick
+Source:		%{name}-%{version}.tar.bz2
+Group:		Office
+Summary:	StarDict clone written in Qt4
+Requires:	stardict-dictionary = 2.4.2
 
 %description
 StarDict is a clone of StarDict written in Qt4.
@@ -24,31 +17,43 @@ Main features:
 * Working in system tray
 * Scanning mouse selection and showing popup window with translation of selected word
 
-Authors:
---------
-    Alexander Rodin <rodin.alexander@gmail.com>
-
 %prep
-%setup -n %{name}-%{version} -q
+%setup -q
 
 %build
-qmake
-make %{?jobs:-j %jobs}
+%{qt4dir}/bin/qmake
+%make
 
 %install
-%__install -d -m 755 %{buildroot}%{_bindir}
-%__install -p -m 755 bin/qstardict %{buildroot}%{_bindir}
+install -D -m755 bin/qstardict %{buildroot}%{_bindir}/%{name}
 
-%__install -d -m 755 %{buildroot}%{_datadir}/pixmaps/
-%__install -p -m 644 resources/qstardict.png %{buildroot}%{_datadir}/pixmaps/
+mkdir -p %{buildroot}%{_iconsdir}
+convert -resize 32x32 resources/qstardict.png %{buildroot}%{_iconsdir}/%{name}.png
+mkdir -p %{buildroot}%{_liconsdir}
+convert -resize 48x48 resources/qstardict.png %{buildroot}%{_liconsdir}/%{name}.png
+mkdir -p %{buildroot}%{_miconsdir}
+convert -resize 16x16 resources/qstardict.png %{buildroot}%{_miconsdir}/%{name}.png
 
-%suse_update_desktop_file -c %{name} "QStarDict" "QStarDict Dictionary" %{name} "%{name}.png" Office Dictionary
+mkdir -p %buildroot%{_datadir}/applications
+desktop-file-install --vendor='' \
+	--dir=%buildroot%{_datadir}/applications \
+	--remove-category='Utility' \
+	--add-category='Office' \
+	resources/qstardict.desktop
 
 %clean
-%{__rm} -rf %{buildroot}
+rm -rf %{buildroot}
+
+%post
+%update_menus
+
+%postun
+%clean_menus
 
 %files
-%defattr(-,root,root,-)
-%{_bindir}/qstardict
-%{_datadir}/applications/qstardict.desktop
-%{_datadir}/pixmaps/qstardict.png
+%defattr(-,root,root)
+%{_bindir}/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_iconsdir}/%{name}.png
+%{_liconsdir}/%{name}.png
+%{_miconsdir}/%{name}.png
