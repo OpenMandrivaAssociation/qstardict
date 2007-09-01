@@ -1,5 +1,5 @@
 Name:		qstardict
-Version:	0.05
+Version:	0.06
 Release:	%mkrel 1
 License:	GPL
 URL:		http://qstardict.ylsoftware.com
