@@ -5,6 +5,7 @@ Release:	%mkrel 1
 # 0.06 -> 0.07, it changed from GPLv3 to GPLv2.
 License:	GPLv2
 URL:		http://qstardict.ylsoftware.com
+BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 BuildRequires:	qt4-devel glib2-devel desktop-file-utils ImageMagick
 Source:		%{name}-%{version}.tar.bz2
 Group:		Office
