@@ -17,7 +17,8 @@ StarDict is a clone of StarDict written in Qt4.
 Main features:
 * Full support of StarDict dictionaries
 * Working in system tray
-* Scanning mouse selection and showing popup window with translation of selected word
+* Scanning mouse selection and showing popup window with translation of
+  selected word
 
 %prep
 %setup -q
