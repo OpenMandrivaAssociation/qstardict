@@ -28,8 +28,10 @@ Main features:
 %make
 
 %install
-#install -D -m755 bin/qstardict %{buildroot}%{_bindir}/%{name}
 make install INSTALL_ROOT=%{buildroot}
+%ifarch x86_64
+mv -f %buildroot%_prefix/lib %buildroot/%_libdir
+%endif
 
 mkdir -p %{buildroot}%{_iconsdir}
 convert -resize 32x32 qstardict/qstardict.png %{buildroot}%{_iconsdir}/%{name}.png
