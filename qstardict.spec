@@ -1,5 +1,5 @@
 Name:		qstardict
-Version:	0.08
+Version:	0.12.7
 Release:	%mkrel 1
 # fwang: this one is GPLv2 only, because in the version upgrade of
 # 0.06 -> 0.07, it changed from GPLv3 to GPLv2.
@@ -28,14 +28,15 @@ Main features:
 %make
 
 %install
-install -D -m755 bin/qstardict %{buildroot}%{_bindir}/%{name}
+#install -D -m755 bin/qstardict %{buildroot}%{_bindir}/%{name}
+make install INSTALL_ROOT=%{buildroot}
 
 mkdir -p %{buildroot}%{_iconsdir}
-convert -resize 32x32 resources/qstardict.png %{buildroot}%{_iconsdir}/%{name}.png
+convert -resize 32x32 qstardict/qstardict.png %{buildroot}%{_iconsdir}/%{name}.png
 mkdir -p %{buildroot}%{_liconsdir}
-convert -resize 48x48 resources/qstardict.png %{buildroot}%{_liconsdir}/%{name}.png
+convert -resize 48x48 qstardict/qstardict.png %{buildroot}%{_liconsdir}/%{name}.png
 mkdir -p %{buildroot}%{_miconsdir}
-convert -resize 16x16 resources/qstardict.png %{buildroot}%{_miconsdir}/%{name}.png
+convert -resize 16x16 qstardict/qstardict.png %{buildroot}%{_miconsdir}/%{name}.png
 
 mkdir -p %buildroot%{_datadir}/applications
 desktop-file-install --vendor='' \
@@ -43,7 +44,7 @@ desktop-file-install --vendor='' \
 	--remove-category='Utility' \
 	--add-category='Office' \
 	--remove-key='Encoding' \
-	resources/qstardict.desktop
+	qstardict/qstardict.desktop
 
 %clean
 rm -rf %{buildroot}
@@ -57,7 +58,10 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %{_bindir}/%{name}
+%{_libdir}/%{name}
+%{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
