@@ -1,6 +1,6 @@
 Name:		qstardict
-Version:	0.12.7
-Release:	%mkrel 2
+Version:	0.12.8
+Release:	%mkrel 1
 # fwang: this one is GPLv2 only, because in the version upgrade of
 # 0.06 -> 0.07, it changed from GPLv3 to GPLv2.
 License:	GPLv2
@@ -24,14 +24,12 @@ Main features:
 %setup -q
 
 %build
-%{qt4dir}/bin/qmake
+%qmake_qt4 PLUGINS_DIR=%_libdir/%name/plugins
 %make
 
 %install
+rm -fr %buildroot
 make install INSTALL_ROOT=%{buildroot}
-%ifarch x86_64
-mv -f %buildroot%_prefix/lib %buildroot/%_libdir
-%endif
 
 mkdir -p %{buildroot}%{_iconsdir}
 convert -resize 32x32 qstardict/qstardict.png %{buildroot}%{_iconsdir}/%{name}.png
@@ -48,6 +46,8 @@ desktop-file-install --vendor='' \
 	--remove-key='Encoding' \
 	qstardict/qstardict.desktop
 
+rm -fr %buildroot%_datadir/doc
+
 %clean
 rm -rf %{buildroot}
 
@@ -59,6 +59,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
+%doc AUTHORS ChangeLog THANKS
 %{_bindir}/%{name}
 %{_libdir}/%{name}
 %{_datadir}/%{name}
