@@ -6,7 +6,7 @@ Release:	%mkrel 2
 License:	GPLv2
 URL:		http://qstardict.ylsoftware.com
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
-BuildRequires:	qt4-devel glib2-devel desktop-file-utils ImageMagick
+BuildRequires:	qt4-devel glib2-devel desktop-file-utils imagemagick
 Source:		%{name}-%{version}.tar.bz2
 Group:		Office
 Summary:	StarDict clone written in Qt4
