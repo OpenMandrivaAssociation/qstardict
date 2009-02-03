@@ -1,6 +1,6 @@
 Name:		qstardict
-Version:	0.12.9
-Release:	%mkrel 2
+Version:	0.13
+Release:	%mkrel 1
 # fwang: this one is GPLv2 only, because in the version upgrade of
 # 0.06 -> 0.07, it changed from GPLv3 to GPLv2.
 License:	GPLv2
@@ -24,7 +24,7 @@ Main features:
 %setup -q
 
 %build
-%qmake_qt4 PLUGINS_DIR=%_libdir/%name/plugins QMAKE_CFLAGS="%{optflags}" QMAKE_CXXFLAGS="%{optflags}" QMAKE_LFLAGS="%{?ldflags}"
+%qmake_qt4 PLUGINS_DIR=%_libdir/%name/plugins
 %make
 
 %install
