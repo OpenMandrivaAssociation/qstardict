@@ -24,7 +24,7 @@ Main features:
 %setup -q
 
 %build
-%qmake_qt4 PLUGINS_DIR=%_libdir/%name/plugins
+%qmake_qt4 PLUGINS_DIR=%_libdir/%name/plugins ENABLED_PLUGINS="stardict web"
 %make
 
 %install
@@ -66,7 +66,6 @@ rm -rf %{buildroot}
 %doc AUTHORS ChangeLog THANKS
 %{_bindir}/%{name}
 %{_libdir}/%{name}
-%{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 %{_iconsdir}/%{name}.png
