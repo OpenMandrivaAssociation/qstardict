@@ -66,6 +66,7 @@ rm -rf %{buildroot}
 %doc AUTHORS ChangeLog THANKS
 %{_bindir}/%{name}
 %{_libdir}/%{name}
+%{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 %{_iconsdir}/%{name}.png
