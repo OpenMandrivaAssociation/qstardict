@@ -1,12 +1,13 @@
 Name:		qstardict
 Version:	0.13.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 # fwang: this one is GPLv2 only, because in the version upgrade of
 # 0.06 -> 0.07, it changed from GPLv3 to GPLv2.
 License:	GPLv2
 URL:		http://qstardict.ylsoftware.com
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 BuildRequires:	qt4-devel glib2-devel desktop-file-utils imagemagick
+BuildRequires:	kdelibs4-devel
 Source:		%{name}-%{version}.tar.bz2
 Group:		Office
 Summary:	StarDict clone written in Qt4
@@ -20,6 +21,14 @@ Main features:
 * Scanning mouse selection and showing popup window with translation of
   selected word
 
+%package -n plasma-applet-%{name}
+Group:		Graphical desktop/KDE
+Summary:	Plasma applet of qstardict
+Requires:	%name = %version
+
+%description -n plasma-applet-%{name}
+This package contains kde plasma applet of qstardict.
+
 %prep
 %setup -q
 
@@ -27,9 +36,17 @@ Main features:
 %qmake_qt4 PLUGINS_DIR=%_libdir/%name/plugins ENABLED_PLUGINS="stardict web"
 %make
 
+cd kdeplasma
+%cmake_kde4
+%make
+
 %install
 rm -fr %buildroot
 make install INSTALL_ROOT=%{buildroot}
+
+pushd kdeplasma/build
+%makeinstall_std
+popd
 
 mkdir -p %{buildroot}%{_iconsdir}
 convert -resize 32x32 qstardict/qstardict.png %{buildroot}%{_iconsdir}/%{name}.png
@@ -72,3 +89,8 @@ rm -rf %{buildroot}
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
+
+%files -n plasma-applet-%{name}
+%defattr(-,root,root)
+%_kde_libdir/kde4/*.so
+%_kde_services/*.desktop
