@@ -9,6 +9,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 BuildRequires:	qt4-devel glib2-devel desktop-file-utils imagemagick
 BuildRequires:	kdelibs4-devel
 Source:		%{name}-%{version}.tar.bz2
+Patch0:		qstardict-0.13.1-gcc4.4.patch
 Group:		Office
 Summary:	StarDict clone written in Qt4
 Requires:	stardict-dictionary = 2.4.2
@@ -31,6 +32,7 @@ This package contains kde plasma applet of qstardict.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %qmake_qt4 PLUGINS_DIR=%_libdir/%name/plugins ENABLED_PLUGINS="stardict web"
