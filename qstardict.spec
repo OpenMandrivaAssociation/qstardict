@@ -1,26 +1,30 @@
 Name:		qstardict
-Version:	0.13.1
+Version:	1.0.1
 Release:	%mkrel 4
 # fwang: this one is GPLv2 only, because in the version upgrade of
 # 0.06 -> 0.07, it changed from GPLv3 to GPLv2.
 License:	GPLv2
 URL:		http://qstardict.ylsoftware.com
-BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 BuildRequires:	qt4-devel glib2-devel desktop-file-utils imagemagick
 BuildRequires:	kdelibs4-devel
-Source:		%{name}-%{version}.tar.bz2
-Patch0:		qstardict-0.13.1-gcc4.4.patch
+Source0:	http://qstardict.ylsoftware.com/files/%{name}-%{version}.tar.bz2
+Patch0:		qstardict-1.0.1-mdv-glib.patch
 Group:		Office
 Summary:	StarDict clone written in Qt4
 Requires:	stardict-dictionary = 2.4.2
 
 %description
-StarDict is a clone of StarDict written in Qt4.
-Main features:
-* Full support of StarDict dictionaries
+QStarDict is a dictionary program written using Qt4. The user interface is
+similar to StarDict. The latest version is 1.0.1.
+
+Main features
+
+* Full support of StarDict 2.x dictionaries
 * Working in system tray
-* Scanning mouse selection and showing popup window with translation of
-  selected word
+* Scanning mouse selection and showing popup window with translation
+  of selected word
+* Translations reformatting
+* Plugins support
 
 %package -n plasma-applet-%{name}
 Group:		Graphical desktop/KDE
@@ -32,7 +36,7 @@ This package contains kde plasma applet of qstardict.
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p1
 
 %build
 %qmake_qt4 PLUGINS_DIR=%_libdir/%name/plugins ENABLED_PLUGINS="stardict web"
@@ -43,7 +47,6 @@ cd kdeplasma
 %make
 
 %install
-rm -fr %buildroot
 make install INSTALL_ROOT=%{buildroot}
 
 pushd kdeplasma/build
@@ -66,19 +69,6 @@ desktop-file-install --vendor='' \
 	qstardict/qstardict.desktop
 
 rm -fr %buildroot%_datadir/doc
-
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post
-%update_menus
-%endif
-
-%if %mdkversion < 200900
-%postun
-%clean_menus
-%endif
 
 %files
 %defattr(-,root,root)
