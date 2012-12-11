@@ -86,3 +86,90 @@ rm -fr %buildroot%_datadir/doc
 %defattr(-,root,root)
 %_kde_libdir/kde4/*.so
 %_kde_services/*.desktop
+
+
+%changelog
+* Wed Feb 01 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 1.0.1-4mdv2011.0
++ Revision: 770352
+- update to 1.0.1
+
+* Tue Dec 07 2010 Oden Eriksson <oeriksson@mandriva.com> 0.13.1-4mdv2011.0
++ Revision: 614679
+- the mass rebuild of 2010.1 packages
+
+* Fri Apr 30 2010 Funda Wang <fwang@mandriva.org> 0.13.1-3mdv2010.1
++ Revision: 541301
+- fix build with gcc 4.4
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Wed Mar 11 2009 Funda Wang <fwang@mandriva.org> 0.13.1-2mdv2009.1
++ Revision: 353779
+- add kde4 plasma applet
+
+* Tue Feb 10 2009 Funda Wang <fwang@mandriva.org> 0.13.1-1mdv2009.1
++ Revision: 339177
+- fix file list
+- New version 0.13.1
+
+* Tue Feb 03 2009 Funda Wang <fwang@mandriva.org> 0.13-1mdv2009.1
++ Revision: 337023
+- enable plugins
+- New verison 0.13
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - lowercase ImageMagick
+
+* Tue Aug 05 2008 Funda Wang <fwang@mandriva.org> 0.12.9-2mdv2009.0
++ Revision: 263693
+- rebuild against new compile flags
+
+  + Pixel <pixel@mandriva.com>
+    - rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+* Wed Jun 11 2008 Funda Wang <fwang@mandriva.org> 0.12.9-1mdv2009.0
++ Revision: 218145
+- New version 0.12.9
+
+* Wed Jun 11 2008 Funda Wang <fwang@mandriva.org> 0.12.8-1mdv2009.0
++ Revision: 218085
+- New version 0.12.8
+
+* Wed Apr 16 2008 Funda Wang <fwang@mandriva.org> 0.12.7-2mdv2009.0
++ Revision: 194547
+- move plugin dir
+- New version 0.12.7
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - fix description-line-too-long
+    - kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+* Mon Nov 12 2007 Funda Wang <fwang@mandriva.org> 0.08-1mdv2008.1
++ Revision: 108061
+- New version 0.08
+
+* Fri Sep 07 2007 Funda Wang <fwang@mandriva.org> 0.07-1mdv2008.0
++ Revision: 82013
+- New version 0.07
+
+* Sat Sep 01 2007 Funda Wang <fwang@mandriva.org> 0.06-1mdv2008.0
++ Revision: 77348
+- New version 0.06
+
+* Wed Aug 29 2007 Funda Wang <fwang@mandriva.org> 0.05-1mdv2008.0
++ Revision: 73345
+- convert suse style to mandriva style
+- Import qstardict
+
+
+
+* Tue Jul 31 2007 - Petr Vanek <petr@scribus.info>
+- updated to 0.05
+* Fri Jul 27 2007 - Nikolay Derkach <nderkach@gmail.com>
+- update to 0.04
+* Sun Jul 08 2007 - Nikolay Derkach <nderkach@gmail.com>
+- initial package
