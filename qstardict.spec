@@ -4,7 +4,7 @@ Release:	5
 # fwang: this one is GPLv2 only, because in the version upgrade of
 # 0.06 -> 0.07, it changed from GPLv3 to GPLv2.
 License:	GPLv2
-URL:		http://qstardict.ylsoftware.com
+URL:		https://qstardict.ylsoftware.com
 BuildRequires:	qt4-devel glib2-devel desktop-file-utils imagemagick
 BuildRequires:	kdelibs4-devel
 Source0:	http://qstardict.ylsoftware.com/files/%{name}-%{version}.tar.bz2
