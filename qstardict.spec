@@ -5,6 +5,7 @@ Release:	5
 # 0.06 -> 0.07, it changed from GPLv3 to GPLv2.
 License:	GPLv2
 URL:		https://qstardict.ylsoftware.com
+BuildRequires:	make
 BuildRequires:	qt4-devel glib2-devel desktop-file-utils imagemagick
 BuildRequires:	kdelibs4-devel
 Source0:	http://qstardict.ylsoftware.com/files/%{name}-%{version}.tar.bz2
